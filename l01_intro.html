@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>react js</title>
+</head>
+<body>
+    <h1>React JS 소개 및 설치</h1>
+ 
+    <h2>React 란 무엇인가?</h2>
+    <ul>
+        <li>React는 javascript 라이브러리로 싱글페이지 어플리케이션을 만들 수 있다.
+            <ul>
+                <li>프레임워크: 어플리케이션을 제어, 재구성, 흐름제어 등 주도권을 가진 형태 </li>
+                <li>라이브러리: 어플리케이션이 필요에 의해 추가한 도구</li>
+            </ul>
+        </li>
+        <li>React는 싱글페이지만 호출되도록 흐름을 제어하고 있지만 가상 돔(Virtual DOM)을 생성하고 제어할 수 있는 라이브러리가 주이기 때문에 
+            프레임워크가 아닌 라이브러리라 부른다(프레임워크라 불리면 무겁고 배우기 힘들게 느껴지기 때문에 라이브러리로 불리기를 고집하는 경향이 있다.)
+        </li>
+        <li>SPA (Single Page Application)로 CSR(Client Side Rendering)의 특징인 네이티브앱의 UX를 제공한다.
+            <ul>
+                <li>싱글페이지 어플리케이션: 핸드폰 어플리케이션 처럼 한개의 페이지로만 구성된 어플리케이션</li>
+                <li>웹어플리케이션에서 다른 페이지를 요청시 페이지를 반환하지 않고 자바스크립트로 생성한 dom 을 반환 하는 구조</li>
+                <li>웹어플리케이션에 필요한 모든 리소스(js,css,html,img ... )를 처음 한번 다운 받는다.</li>
+                <li>처음 로딩할 때 다운로드로 시간이 오래 걸린다. </li>
+                <li>네이티브 앱과 같은 빠르고 자연스러운 페이지 전환 UX(User eXperience)를 제공한다.</li>
+                <li>CSR(Client Side Rendering) :브라우저에서 페이지를 구성하고 출력한다는 뜻 </li>
+                <li>브라우저에서 네이트브앱 동작하기 때문에 낯설게 느낄 수 있다.</li>
+                <li>SEO(Search Engine Optimization) 검색엔진 최적화가 굉장히 어렵다.   
+                    <ul>
+                        <li>검색엔진은 검색 최적화(SEO)를 위해 웹 서버에 있는 HTML 문서를 분석하고 정리(indexing)한다.</li>
+                        <li>HTML을 분석 추출하는 행위를 크롤링(crawling) 혹은 스크레이핑(scraping)라 부르고 소프트웨어를 크롤러(crawler)라고 한다.</li>
+                        <li>크롤러의 indexing 기준은 메타,시멘틱 요소, a 태그가 있다.</li>
+                        <li>SPA는 CSR로 HTML 문서를 서버에서 생성하지 않고 클라언트(브라우저)에서 렌더한기 때문에 서버에 있는 HTML은 빈 문서이고
+                            자바스크립트에 HTML이 어떻게 구성할지 작성되어 있다.
+                        </li>
+                        <li>SEO의 대상에는 자바스크립트가 포함되지 않는다(최근 포함하려는 노력 중)</li>
+                    </ul>
+                </li>
+
+            </ul>
+        </li>
+        <li> MPA(Multiple Page Application)
+            <ul>
+                <li>멀티페이지 어플리케이션: 기존의 웹서버처럼 웹어플리케이션에 여러 페이지로 구성된 어플리케이션</li>
+                <li>웹어플리케이션에서 다른 페이지를 요청시 요청하는 페이지를 다운받아 브라우저에서 출력(렌더)한다.</li>
+                <li>웹어플리케이션에 필요한 모든 리소스를 요청할 때 마다 받는다.(중복 리소스를 계속 다운로드한다.=>서버 부하)</li>
+                <li>처음 로딩할 때 속도가 빠르다. </li>
+                <li>호출되는 페이지를 매번 새롭게 렌더하기 때문에 전환이 느리다.(새로고침,깜빡임) </li>
+                <li>SSR(Server Side Rendering) :서버에서 클라이언트에 출력될 페이지를 구성하고 내보낸다. </li>
+                <li>오래된 웹 어플리케이션 UX 로 친숙하게 사용할 수 있다.</li>
+                <li>MPA는 각 페이지에 sementic, a, meta 태그가 작성되어 SEO가 용이하다.</li>
+            </ul>
+        </li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>
