@@ -14,22 +14,41 @@
 <body>
     <h1>React를 CDN(Content Distribution Network) 추가로 간단히 동작해보자</h1>
     <p> CDN은 인터넷 콘텐츠를 고속 전송하는 지리적으로 분산된 서버 집단으로 js,css,image와 같은 인터넷 콘텐츠를 로드하는 데 필요한 리소스를 신속하게 전송하기 위해 사용된다.</p>
+    <ul>
+        <li>https://unpkg.com/react@17/umd/react.development.js : React객체로 Component를 제공한다. </li>
+        <li>https://unpkg.com/react-dom@17/umd/react-dom.development.js : ReactDOM 객체로 Component를 화면에 렌더하는 객체다 </li>
+        <li>https://unpkg.com/babel-standalone@6/babel.min.js: babel 라이브러리로 JS 크로스브라우징과 JSX 제공한다,</li>
+    </ul>
+
+    <h2>React.Compoent</h2>
+    <ul>
+        <li>상속 받은 객체나 함수를 Virtual DOM이 될 수 있게 하는 객체 </li>
+        <li>render 함수를 재정의 해야 ReactDOM Compoent를 출력할 수 있다</li>
+    </ul>
 
     <div id="root"></div>
     <div id="babelRoot"></div>
     <script>
         class Hello extends React.Component  {
             render(){
-                return  React.createElement('h1', {}, 'Hello React');
+                const h1=React.createElement('h1', {}, this.props.h1_txt);
+                const p=React.createElement('p', {},  this.props.p_text);
+                const container=React.createElement('div', {className:"container"}, h1,p);
+                return  container;
             }
         }
-        ReactDOM.render( new Hello().render(), document.getElementById('root'));
+        ReactDOM.render( React.createElement(Hello,{h1_txt:"Hello React!",p_text:'리액트 설치완료!'},null), document.getElementById('root'));
         </script>
         
         <script type="text/babel">
+        class ClickBtn extends React.Component  {
+            render(){
+                return <button>{this.props.txt}</button>
+            }
+        }
         class JsxHello extends React.Component  {
             render(){
-                return  <h1>Hello babel JSX</h1>;
+                return  <h1>Hello babel JSX <ClickBtn txt="클릭하세요"/></h1>;
             }
         }
         ReactDOM.render(<JsxHello/>, document.getElementById('babelRoot'));
