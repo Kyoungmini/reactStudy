@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+
+    <title>Document</title>
+</head>
+<body>
+    <h1>React를 CDN(Content Distribution Network) 추가로 간단히 동작해보자</h1>
+    <p> CDN은 인터넷 콘텐츠를 고속 전송하는 지리적으로 분산된 서버 집단으로 js,css,image와 같은 인터넷 콘텐츠를 로드하는 데 필요한 리소스를 신속하게 전송하기 위해 사용된다.</p>
+
+    <div id="root"></div>
+    <div id="babelRoot"></div>
+    <script>
+        class Hello extends React.Component  {
+            render(){
+                return  React.createElement('h1', {}, 'Hello React');
+            }
+        }
+        ReactDOM.render( new Hello().render(), document.getElementById('root'));
+        </script>
+        
+        <script type="text/babel">
+        class JsxHello extends React.Component  {
+            render(){
+                return  <h1>Hello babel JSX</h1>;
+            }
+        }
+        ReactDOM.render(<JsxHello/>, document.getElementById('babelRoot'));
+
+        </script>
+  
+</body>
+</html>
