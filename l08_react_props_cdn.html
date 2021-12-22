@@ -22,6 +22,10 @@
         <li>보통 props를 컴포넌트의 초기값이라 부른다.</li>
         <li>props로 지정한 값은 바뀔 수 없다.(read-only)</li>
         <li>form 요소에 value 처럼 바뀔 수 있는 값은 props로 지정하면 안된다.</li>
+        <li>컴포넌트를 생성할때 props 값은 속성에 값을 대입하 듯 작성하다.(propsName="") </li>
+        <li>props 값으로 모든 타입을 대입할 수 있다. (propsName={[1,2,3]})</li>
+        <li>컴포넌트에서 props는 필드 값으로 this.props로 접근할 수 있다.</li>
+        <li>생성시 작성한 props의 값은 Object이고 props.propsName or props["propsName"]으로 사용가능하다</li>
     </ul>
 
 
@@ -31,11 +35,16 @@
 <script type="text/babel">
 //class div extends React.Component{}
 class TextInput extends React.Component{
-    render(){
-        return (<input type="text" value={this.props.val} />);
+    constructor(props){
+        super(props)
+        console.log(props.size=40);
+        if(!props.size){props.size=40};
     }
-}
+    render(){
+        return (<input type="text" value={this.props.val} size={this.props.size} />);
+    }
 
+}
 class Welcome extends React.Component{
     //props
     constructor(props){
