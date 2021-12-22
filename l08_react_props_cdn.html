@@ -27,7 +27,10 @@
         <li>컴포넌트에서 props는 필드 값으로 this.props로 접근할 수 있다.</li>
         <li>생성시 작성한 props의 값은 Object이고 props.propsName or props["propsName"]으로 사용가능하다</li>
     </ul>
-
+<!-- 
+특성	                                         props	    state
+parent 컴포넌트에 의해 값이 변경 될 수 있는가?	    예	        아니오
+컴포넌트 내부에서 변경 될 수 있는가?	            아니오	    예 -->
 
 
     <div id="root"></div>
@@ -37,11 +40,14 @@
 class TextInput extends React.Component{
     constructor(props){
         super(props)
-        console.log(props.size=40);
-        if(!props.size){props.size=40};
+        // console.log(props.size=40);
+        // if(!props.size){props.size=40};
     }
     render(){
         return (<input type="text" value={this.props.val} size={this.props.size} />);
+    }
+    static defaultProps={
+        size:40
     }
 
 }
