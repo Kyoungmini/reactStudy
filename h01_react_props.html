@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+    <title>react homework</title>
+</head>
+<body>
+    <h1>리엑트로 목록 태그를 완성하세요!</h1>
+    <div id="root">
+        <!-- <ul>
+            <li>React</li>
+            <li>ReactDOM</li>
+            <li>Component</li>
+            <li>props</li>
+            <li>render()</li>
+        </ul> -->
+
+        
+    </div>
+    <div id="schedule_post">
+        <p class="post">
+            <b class="time">09:30 : </b> <i class="schedule"> 일어나기</i>
+        </p>
+        <p class="post">
+            <b class="time">10:25 : </b> <i class="schedule"> 출근 힘차게</i>
+        </p>
+        <p class="post">
+            <b class="time">12:10 : </b> <i class="schedule"> 점심 맛있게 냠냠</i>
+        </p>
+        <p class="post">
+            <b class="time">02:00 : </b>  <i class="schedule"> 잠들기 쿨쿨</i>
+        </p>
+    </div>
+<script type="text/babel">
+const schedule_post_arr=[
+    {time:"09:30",schedule:"일어나기 하품"},
+    {time:"10:25",schedule:"출근 힘차게"},
+    {time:"12:10",schedule:"점심 맛있게 냠냠"},
+    {time:"02:00",schedule:"잠들기 쿨쿨"}];
+class SchedulePost{}
+
+const li_arr=["React","ReactDOM","Component","props","render()"];
+class CustomUl extends React.Component{
+    render(){
+        const lis=[<li>a</li>,<li>b</li>,<li>c</li>];
+        return(
+            <ul style={this.props.style}>
+                {lis}
+            </ul> 
+        );
+    } 
+
+}
+ReactDOM.render(<CustomUl li_arr={li_arr} style={{background:"lightblue",color:"red"}}/>,root)
+
+</script>
+</body>
+</html>

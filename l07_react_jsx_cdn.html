@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+
+    <title>React JSX</title>
+</head>
+<body>
+    <h1>바벨로 React에서 JSX 사용해 보자</h1>
+    <h2>JSX(Javascript Xml)</h2>
+    <ul>
+        <li>babel : type="text/babel" 인 스크립트로 작성을 하면 크로스브라우징(es5 or 6 동작하지 않는 브라우저에서 동작지원)된 js 코드로 컴파일할 수 있는 라이브러리</li>
+        <li>JSX : 바벨에서 지원하는 문법으로 자바스크립트에서 html을 xml 형식으로 작성하도록 돕는다.</li>
+        <li>React JSX : 리엑트에서 JSX를 사용하면 리엑트 컴퍼트를 생성한다</li>
+        <li>JSX compile js: const h1=React.createElement("h1",{},null); </li>
+        <li> {} : jsx에서 javascript를 사용할 수 있는 표현식</li>
+        <li> 래핑 : 한개의 컴포넌트는 렌더 시 반환되는 컴포넌트가 1개 여야한다. 때문에 공백의 부모 태그인 래핑을 jsx가 지원한다.</li>
+        <li> jsx는 html과 다르게 닫는 요소를 꼭 작성해야한다.</li>
+        <!-- <br> => <br/> -->
+    </ul>
+
+    <div id="root"></div>
+<script type="text/babel">
+class Hello extends React.Component{
+    num=20;
+    render(){
+        const header=(
+        <div>   
+            <header>
+                <h1 className="header">안녕 JSX {this.num*5}</h1>
+                <p>jsx는 바벨의 문법입니다.</p>    
+            </header>
+            <main>메인입니다.</main>
+        </div>
+        );
+        return header;
+    }
+}
+//html xml:<br>  
+//xml : <br/>
+//jsx : <Component/>
+ReactDOM.render(<Hello/>,root)
+
+</script>
+</body>
+</html>

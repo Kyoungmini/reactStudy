@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js class extends</title>
+</head>
+<body>
+    <h1>자바스크립트에서 상속을 사용하자</h1>
+
+
+
+ <script>
+//거대한 동물이라는 class 생성
+//동물 class를 이용해 강아지와 고양이를 만든다.
+
+//설계(추상화) => 동물: 이름,털=>모발,피부,먹는다,나이,숨을쉰다,움직인다....
+//강아지 extends 동물=> 꼬리를 흔든다,냄새를 잘 맡는다, 사냥을 한다.
+//고양이 extends 동물=> 점프를 한다, 털을 세운다, 사냥을 한다.
+//사자 extends 고양이=> 갈기,.....
+//늑대 extends 강아지=> 하울링을 한다, 무리를 짓는다,....
+ 
+
+//강아지:이름,털=>모발,나이,숨을쉰다,움직인다,꼬리를 흔든다,냄새를 잘 맡는다, 사냥을 한다.
+//고양이:이름,털=>모발,나이,숨을쉰다,움직인다,점프를 한다, 털을 세운다, 사냥을 한다.
+//사자 :이름,털=>모발,나이,숨을쉰다,움직인다 점프를 한다, 털을 세운다, 사냥을 한다.,갈기,.......
+//늑대 :이름,털=>모발,나이,숨을쉰다,움직인다....꼬리를 흔든다,냄새를 잘 맡는다, 사냥을 한다. 하울링을 한다, 무리를 짓는다,....
+
+//사자.털 (0)
+
+//설계의 기본 공통점을 찾아 추상화를 한다. => 부모 객체를 만든다.
+//부모 객체를 상속(재사용)을 이용해 자식 객체를 만든다.
+
+
+class Animal{
+    name;hair;
+    age=0;
+    //constructor을 정의=>기본값을 무조건 정의하겠다.
+    constructor(name,hair){
+        this.name=name;
+        this.hair=hair;
+    }
+    breath(){
+        return this.name+"이 숨을 쉰다.";
+    }
+    move(){
+        return this.name+"움직인다.";
+    }
+}
+const dog1=new Animal("홍구","반곱슬");
+console.log(dog1.move());
+console.log(dog1.breath());
+class Dog{
+    name;age=0;hair;
+    constructor(name,hair){this.name; this.hair=hair}
+    breath(){ console.log(this.name+"숨쉰다.");}
+    move(){console.log(this.name+"움직인다.");}
+    wag(){console.log(this.name+"꼬리를 흔든다.");}
+    smell(){console.log(this.name+"냄새를 잘 맡는다.");}
+}
+class AniDog extends Animal{
+    constructor(name,hair){
+        super(name,hair);
+    }
+    //Animal.move()를 완전히 새롭게 정의
+    //move(){ return "터벅터벅 "+this.name+"가 걷는다." }
+
+    //super는 상속받은 부모접근자
+    //부모의 메소드 재정의 방법
+    move(){
+        return "터벅터벅 "+super.move()+" 완전 늠름해!";
+    }
+
+    wag(){
+        return this.name+"꼬리를 흔든다.";
+    }
+    smell(){
+        return this.name+"냄새를 맡는다.";
+    }
+}
+
+//console.log(new AniDog("맥스","직모").move());
+//인스턴스객체가 참조되지 않으면 사용즉시 삭제(메모리에 부담)
+const max_dog=new AniDog("맥스","직모");
+console.log(max_dog.move());
+console.log(max_dog.wag());
+console.log(max_dog.smell());
+
+class Cat extends Animal{
+    toenail;
+    //constructor(toenail){this.toenail=toenail;}
+    constructor(name,hair,toenail){
+        super(name,hair);
+        this.toenail=toenail;
+    }
+
+}
+class 사자 extends Cat{
+
+}
+console.log(new 사자("라이언","직모","날카로운발톱"));
+
+console.log(new Date().getDay()); //0~6 [일~토]
+console.log(new Date().getDate());
+console.log(new Date().getMonth()); //0~11
+console.log(new Date().getFullYear());
+console.log(new Date().getSeconds()); //0~59
+
+class CustomDate extends Date{
+    //constructor(){}
+    // getDay(){
+    //     let day=super.getDay();
+    //     const day_array=["일","월","화","수","목","금","토"];
+    //     return day_array[day];
+    // }
+    days_kor_abb=["일","월","화","수","목","금","토"];
+    days_kor=["일요일","월요일","화요일","수요일","목요일","금요일","토요일"];
+    days_eng=[];
+    getDayKor(){
+            let day=super.getDay();
+            return this.days_kor[day];
+    }
+    getMonthEng(){ }
+    getMonthEngAbb(){}
+}
+const date=new CustomDate();
+console.log(date.getDayKor());
+
+
+const days_arr=["일요일","월요일","화요일","수요일","목요일","금요일","토요일"];
+document.write(days_arr[new Date().getDay()]);
+
+
+</script> 
+    <h2>자바스크립트 상속</h2>
+    <ul>
+        <li>상속이란 정의된 type을 다른 타입이 물려받고(링크) 재정의할 수 있는 것</li>
+        <li>type을 물려준 대상을 부모 물려받은 대상을 자식이라 한다.</li>
+        <li>자바스크립트에서 상속은 __proto__로 부모의 prototype을 링크하는 것으로 __proto__는 부모를 참조하는 프로퍼티다.</li>
+        <li>es5에 등장한 class 문법을 이용하면 extends를 이용해 상속할 수 있다.</li>
+        <li>이때 자식은 부모의 필드를 접근하기 위해 super를 사용할 수 있다.</li>
+        <li>부모의 생성자가 정의 되어 있다면 자식이 생성자를 재정의 할 때 꼭 부모를 생성자(super())를 호출해야한다.</li>
+        <li>자식은 부모의 필드를 this로도 접근할 수 있다.(상속받은 필드는 자식의 필드라 할 수 있기 때문)</li>
+        <li>자바스크립트에서 모든 객체의 프로토타입의 부모는 Object다</li>
+        <li>모든 프로토타입이 Object를 참조(상속)해서 만들어진다.</li>
+
+    </ul>
+    <h2>자바스크립트 상속 정의하는 방법</h2>
+    <ul>
+        <li>
+<pre>
+class Parent { 
+    constructor(name){
+        this.name=name;
+    }
+    훈육(){
+        return "회초리";
+    }
+}</li>
+</pre>
+        <li>
+<pre>
+예1)class Child extends Parent {
+
+}
+</pre>            
+        </li>
+        <li>
+<pre>
+
+예2)class Child extends Parent {
+    constructor(name,age){
+        super(name);
+        this.age=age;
+    }
+}
+</pre> 
+        </li>
+        <li>
+<pre>
+예3)오버라이딩(Overriding) 부모의 메서드를 제정의 (자식의 메서드만 동작)
+class Child extends Parent(){
+    훈육(){
+        return "팔들기";
+    }
+}
+</pre>            
+        </li>
+        <li>
+<pre>
+예4)오버라이딩 부모의 메서드를 제정의 (부모+자식 동작)
+class Child extends Parent(){
+    훈육(){
+        return super.훈육()+"팔들기";
+    }
+}
+</pre>            
+        </li>   
+    </ul>
+</body>
+</html>
