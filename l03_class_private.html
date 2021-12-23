@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class private</title>
+</head>
+<body>
+    <h1>class의 private과 캡슐화</h1>
+    <h2>캡슐화</h2>
+    <ul>
+        <li>속성(property)과 메서드를 정의(class 생성)</li>
+        <li>속성과 메서드에 이름을 짓는 것</li>
+        <li>정보를 private로 은닉</li>
+        <li>정보를 public으로 오픈 </li>
+        
+        <li>get set으로 은닉된 정보를 제어==>오류를 줄인다</li>
+        
+        <li>부모의 private 필드를 사용할 수 없는 것(은닉)</li>
+        <li>부모의 public 필드를 상속 받는 것</li>
+
+        <li>생성자를 정의해서 프로퍼티에 defualt 값을 주는 것</li>
+        <li>메서드가 매개변수와 리턴으로 나뉜 것 => 캡슐화</li>
+    </ul>
+    <h2>자바스크립트의 public과 private</h2>
+    <ul>
+        <li>프로퍼티에 #을 사용하면 private이 되고 나머지는 다 public이다.</li>
+        <li>private 사용한 프로퍼티는 class 내부에서 this로 참조가능</li>
+        <li>private 사용한 프로퍼티는 객체에서 참조 불가능</li>
+        <li>private 사용한 프로퍼티는 상속받은 자식이 참조 불가능</li>
+        <li>public 어디서든 참조 가능</li>
+        <li>old js는 private가 없어서 프로퍼티를 은닉하기 위해 이름앞에 _를 사용 예) this._date</li>
+        <li>"_" 이용하면 class 내부와 상속받은 자식이 참조 가능한 protected 사용할 수 있다.  </li>
+    </ul>
+    <h2>자바스크립트의 getter setter</h2>
+    <ul>
+        <li>getter,setter는 bean 객체에서 유래된 오래된 형식</li>
+        <li>getter setter는 디자인패턴으로 api가 아니라 개발자간의 약속이었는데 javascript가 약속어로 만들어서 제공하고 있다.</li>
+        <li>규칙)get name(){return this.name;}
+            <ul>
+                <li>new Person.name() (x)</li>
+                <li>new Person.name (o)</li>
+            </ul>
+        </li>
+        <li>규칙)set name(name){this.name=name;}
+            <ul>
+                <li>new Person.name("최경민") (x)</li>
+                <li>new Person.name="최경민" (o)</li>
+            </ul>
+        </li>
+        <li>this.name="ckm" : 호출하면 set name("ckm") 호출된다.</li>
+    </ul>
+<script>
+//데이터베이스 정보를 전송할때 그 정보와 대응되는 객체 
+//데이터베이스 정보와 데이터베이스를 접속해서 받아오는 서버 정보가 타입이 달라서 이를 대응하기 위해 존재한는 Bean 객체
+class UserBean{
+    #name;
+    #id;
+    constructor(name,id){
+        this.#name=name;
+        this.id=id;
+        //this.set id(id);
+    }
+    get name(){return this.#name;}
+    set name(name){this.#name=name;} 
+    get id(){return this.#name}
+    set id(id){
+        console.log("set id "+id);
+        this.#id=(id.length>=5)? id : null;
+    }
+}
+const 최경민=new UserBean("최경민","develckm");
+//최경민.id="develckm";
+console.log(최경민);
+
+class 손{} 
+class 심장{
+    beat="두근두근";
+    constructor(beet){
+        if(beet)this.beat=beet;
+    }
+     toString(){return this.beat}
+}  
+class Person{
+    손=[new 손(),new 손()];발=2;입=1;손가락=5;
+    #심장=new 심장();콩팥=2;간=2;장=1;위=1;
+    #이름; //캡슐화 길이가 2이상 ([악마,지옥] 사용금지)
+    심장소리(){
+        return this.#심장.toString();
+    }
+    get 심장(){
+        return this.#심장.toString();
+    }
+    //심장 수술 개발자가 캡슐화를 진행해야한다.
+    set 심장(대체심장){
+        let is심장=(대체심장 instanceof 심장);
+        if(is심장){
+            this.#심장=대체심장;
+        }else{
+            alert("prtotype이 심장인 것만 수술가능");
+        }
+    }
+
+}
+const p=new Person();
+//p.#심장=new 손(); //set
+//console.log(p.#심장()); //get
+//#으로 정의한 필드는 private 은닉된 상태로 get or set을 할 수 없다.
+//#으로 정의한 필드는 private은 class 내부에서는 참조할 수 있다.
+console.log(p.심장소리());
+console.log(p.심장소리); 
+
+console.log(p.심장); //get 함수 ==> 마치 프로퍼티처럼 참조할 수 있다.
+p.심장=new 손(); //set 함수 ==> 마치 프로퍼티처럼 값을 대체할 수 있다..
+console.log(p);
+
+p.심장=new 심장("두두두근");
+console.log(p.심장);
+
+</script>
+
+
+</body>
+</html>

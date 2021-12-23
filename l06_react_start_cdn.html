@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <title>react cdn start</title>
+</head>
+<body>
+    <h1>React js를 CDN으로 추가해서 간단히 동작해 보자(리액트 어플이 될 수 없다)</h1>
+
+    <h2>CDN으로 추가한 React 라이브러리</h2>
+    <ul>
+        <li>https://unpkg.com/react@17/umd/react.development.js : React 객체와 React.Component를 제공하는 라이브러리</li>
+        <li>https://unpkg.com/react-dom@17/umd/react-dom.development.js : ReactDOM 객체를 제공하는 라이브러리</li>
+    </ul>
+    <h2>React 객체</h2>
+    <ul>
+        <li>React : 라이브러리의 최상위 객체로 정적(static)으로 사용가능하다.</li>
+        <li>React.Component : Virtual DOM으로 생성가능한 노드개체인 Component를 제작하기 위한 타입 </li>
+        <li>React.createElement() : HTML 노드 개체와 React Component를 호출 생성하는 함수</li>
+    </ul>
+    <h2>ReactDOM 객체</h2>
+    <ul>
+        <li>컴퍼넌트를 렌더(브라우저의 출력) 제어하는 객체</li>
+        <li>ReactDOM.render(Component,selector dom(container)) :
+            컴포넌트를 특정 dom에 출력(마운트)해주는 함수
+        </li>
+        <li>ReactDOM.unmountComponenAtNode(container) : 
+            마운트된(출력) 컴포넌트를 dom(container)에서 제거하는 함수
+        </li>
+    </ul>
+    <div id="root"></div>
+    <a href="l05_react_intro.html">리액트 인트로</a>
+<script>
+class Hello extends React.Component{
+
+    render(){
+        const h1_c=React.createElement("h1",{},"안녕 리액트!!");
+        const p_c=React.createElement("p",{},"header에 h1과 p를 추가")
+        const header_c=React.createElement("header",{}, h1_c,p_c);
+        return header_c;
+    }
+}
+//ReactDOM.render(new Hello().render(),document.getElementById("root"));
+ReactDOM.render(
+    React.createElement(Hello,{},null),
+    root
+)
+//<h1>안녕 리액트</h1>
+//console.log(new Hello());
+
+</script>
+</body>
+</html>

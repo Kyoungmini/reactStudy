@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class bind ex</title>
+</head>
+<style>
+html,body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}    
+</style>
+<body>
+    <canvas id="testCanvas" style="border: 1px solid;">
+    </canvas>
+<script>
+//testCanvas
+//resize 화면 사이즈가 변동될 때 마다
+//document.body.clientWidth,clientHeight : viewport 사이즈
+// const ctx=testCanvas.getContext("2d");
+// ctx.fillStyle="lightblue";
+// ctx.fillRect(0,0,testCanvas.width,testCanvas.height);
+// window.addEventListener("resize",function(){
+//     testCanvas.style.width=document.body.clientWidth+"px";  
+//     testCanvas.style.height=document.body.clientHeight+"px";          
+// });
+class TestCanvas{
+    canvas;ctx;bgColor="lightblue";
+    constructor(canvas){
+        this.canvas=canvas;
+        this.ctx=canvas.getContext("2d");
+        //defult 2가지 (배경색 그리기, 화면 resize)
+        this.ctx.fillStyle=this.bgColor;
+        this.ctx.fillRect(0,0,this.canvas.width,this.canvas.height);
+        
+        //function resize(){return undefined}
+        //this==TestCanvas 
+        //window.addEventListener("resize", function(){ return ""});
+
+        //window.addEventListener("resize", resize() );
+        //==>window.addEventListener("resize", return "" );
+        this.canvasFullResize();
+        const canvasResize2=this.canvasFullResize.bind(this);
+
+        window.addEventListener("resize",
+            canvasResize2
+            // ()=>{
+            //     this.canvasResize(document.body.clientWidth,document.body.clientHeight);
+            // }
+
+            // ()=>{ //필드 개념이 없는 화살표함수=>부모의 필드==this
+            //     //this ==TestCanvas
+            //     this.canvas.style.width=document.body.clientWidth+"px";
+            //     this.canvas.style.height=document.body.clientHeight+"px";
+            // }
+            
+            //오류
+            // function(){ //사용하는 주체가 필드
+            //     //this ==window
+            //     console.log("this",this);
+            //     this.canvas.style.width=document.body.clientWidth+"px";
+            //     this.canvas.style.height=document.body.clientHeight+"px";
+            // }
+        );
+    }
+    canvasFullResize(){
+        this.canvas.style.width=document.body.clientWidth+"px";
+        this.canvas.style.height=document.body.clientHeight+"px";
+    }
+
+    canvasResize(width,height){
+        console.log(width,height);
+        this.canvas.style.width=width+"px";
+        this.canvas.style.height=height+"px";
+    }
+}    
+new TestCanvas(testCanvas);
+
+</script>
+
+
+</body>
+</html>
